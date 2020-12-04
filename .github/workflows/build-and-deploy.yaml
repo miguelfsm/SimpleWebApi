@@ -26,4 +26,4 @@ jobs:
       run: dotnet build --no-restore -c Release 
 
     - name: Create artifacts
-      run: dotnet publish --no-build -c Release -o ${{ PACKAGE_PATH }}
+      run: dotnet publish --no-build -c Release -o ${{ env.PACKAGE_PATH }}
