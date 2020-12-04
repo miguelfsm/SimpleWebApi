@@ -8,8 +8,8 @@ env:
 
 jobs:
   build:
-	name: Build and deploy job
-	runs-on: ubuntu-latest
+    name: Build and deploy job
+    runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
 
@@ -20,10 +20,10 @@ jobs:
       with:
         dotnet-version: ${{ env.NETCORE_VERSION }}
     - name: Restore with dotnet
-       run: dotnet restore
+      run: dotnet restore
 
     - name: Build with dotnet
-       run: dotnet build --no-restore -c Release 
+      run: dotnet build --no-restore -c Release 
 
     - name: Create artifacts
-       run: dotnet publish --no-build -c Release -o ${{ PACKAGE_PATH }}
+      run: dotnet publish --no-build -c Release -o ${{ PACKAGE_PATH }}
