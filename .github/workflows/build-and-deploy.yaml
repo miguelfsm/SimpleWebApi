@@ -43,7 +43,7 @@ jobs:
             mkdir -p CodeQuality
             files=(*.sln)
             sh ./resharper/dupfinder.sh "${files[0]}" --output=CodeQuality/dupfinderReport.html --format=Html
-            sh ./resharper/inspectcode.sh "${files[0]}" --output=CodeQuality/inspectcodeReport.xml
+            sh ./resharper/inspectcode.sh "${files[0]}" --output=CodeQuality/results.xml
       - uses: actions/upload-artifact@v1
         with:
           name: CodeQuality
@@ -51,4 +51,4 @@ jobs:
       - name: resharper report 
         uses: glassechidna/resharper-action@master
         with:
-          solution: CodeQuality/inspectcodeReport.html
+          solution: CodeQuality/results.xml
