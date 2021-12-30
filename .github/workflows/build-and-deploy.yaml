@@ -27,3 +27,13 @@ jobs:
 
     - name: Create artifacts
       run: dotnet publish --no-build -c Release -o ${{ env.PACKAGE_PATH }}
+  resharper:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      
+      - name: resharper
+        uses: glassechidna/resharper-action@master
+        with:
+          solution: SimpleWebApi.sln
