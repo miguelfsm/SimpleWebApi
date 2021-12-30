@@ -33,11 +33,20 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
       
-      - name: resharper
-        uses: glassechidna/resharper-action@master
+      - name: Resharper Code Quality
+        run: |
+            # apt update && apt install -y curl zip unzip
+            curl -LO "https://download.jetbrains.com/resharper/ReSharperUltimate.$RESHARPER_CLI_VERSION/$RESHARPER_CLI_NAME.$RESHARPER_CLI_VERSION.zip"
+            unzip -q $RESHARPER_CLI_NAME.$RESHARPER_CLI_VERSION.zip -d "resharper"
+            mkdir -p CodeQuality
+            files=(*.sln)
+            sh ./resharper/dupfinder.sh "${files[0]}" --output=CodeQuality/dupfinderReport.html --format=Html
+            sh ./resharper/inspectcode.sh "${files[0]}" --output=CodeQuality/inspectcodeReport.xml
+      - uses: actions/upload-artifact@v1
         with:
-          solution: SimpleWebApi.sln
+          name: CodeQuality
+          path: CodeQuality
       - name: resharper report 
         uses: glassechidna/resharper-action@master
         with:
-          solution: /tmp/report.xml
+          solution: CodeQuality/inspectcodeReport.html
