@@ -5,6 +5,8 @@ on: [push,  workflow_dispatch]
 env: 
   NETCORE_VERSION: '3.1'  # set correct version here
   PACKAGE_PATH: './published'
+  RESHARPER_CLI_NAME: 'JetBrains.ReSharper.CommandLineTools.Unix'
+  RESHARPER_CLI_VERSION: "2019.2.3"
 
 jobs:
   build:
