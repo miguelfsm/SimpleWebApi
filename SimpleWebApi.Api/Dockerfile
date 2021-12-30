@@ -10,7 +10,7 @@ WORKDIR /src
 COPY ["SimpleWebApi.Api/SimpleWebApi.Api.csproj", "SimpleWebApi.Api/"]
 RUN dotnet restore "SimpleWebApi.Api/SimpleWebApi.Api.csproj"
 COPY . .
-WORKDIR "/src/SimpleWebApi.Api"
+WORKDIR /src/SimpleWebApi.Api
 RUN dotnet build "SimpleWebApi.Api.csproj" -c Release -o /app/build
 
 FROM build AS publish
