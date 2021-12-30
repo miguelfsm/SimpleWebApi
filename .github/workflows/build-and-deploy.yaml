@@ -37,3 +37,7 @@ jobs:
         uses: glassechidna/resharper-action@master
         with:
           solution: SimpleWebApi.sln
+      - name: resharper report 
+        uses: glassechidna/resharper-action@master
+        with:
+          solution: /tmp/report.xml
